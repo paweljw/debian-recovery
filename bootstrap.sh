@@ -16,10 +16,11 @@ function bang()
 	cd /tmp
 
 	echo "# Klonuje skrypty rozruchowe"
+	rm -rf debian-recovery
 	git clone https://github.com/paweljw/debian-recovery.git
 	cd debian-recovery
-	chmod +x payloads/*.sh
-	run-parts ./payloads/*
+	chmod +x payloads/*
+	run-parts ./payloads
 }
 
-bang()
+bang
