@@ -8,7 +8,7 @@ whoami
 
 echo "# Instalacja GITa"
 apt-get update
-apt-get -y --force-yes install git
+apt-get -qq -y --force-yes install git
 
 function bang()
 {

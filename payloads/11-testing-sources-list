@@ -1,7 +1,11 @@
 #!/bin/sh
 
+echo "DEBIAN: wymieniam sources.list"
 cd /etc/apt
 cp sources.list sources.list.bak
 cp /tmp/debian-recovery/resources/sources.list .
 apt-get update
+
+echo "DEBIAN: upgrade do testing"
+echo "DEBIAN: to zajmie NAPRAWDE duzo czasu"
 apt-get -qq -y --force-yes dist-upgrade
