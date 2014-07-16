@@ -6,13 +6,16 @@ whoami
 
 echo "# Instalacja GITa"
 apt-get update
-apt-get install git
+apt-get -y --force-yes install git
 
-echo "# Ide do /tmp"
-cd /tmp
+function bang()
+{
+	echo "# Ide do /tmp"
+	cd /tmp
 
-echo "# Klonuje skrypty rozruchowe"
-git clone git@github.com:paweljw/debian-recovery.git
-cd debian-recovery
-chmod +x payloads/*.sh
-run-parts ./payloads/*
+	echo "# Klonuje skrypty rozruchowe"
+	git clone https://github.com/paweljw/debian-recovery.git
+	cd debian-recovery
+	chmod +x payloads/*.sh
+	run-parts ./payloads/*
+}
