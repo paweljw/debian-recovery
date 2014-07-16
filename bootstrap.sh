@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# http://bit.ly/1zI6Pbg
+
 echo "# Ten skrypt jest smutny jesli nie jestes rootem"
 echo "# Aktualny uzytkownik to:"
 whoami
@@ -19,3 +21,5 @@ function bang()
 	chmod +x payloads/*.sh
 	run-parts ./payloads/*
 }
+
+bang()
