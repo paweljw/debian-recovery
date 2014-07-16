@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "MYSQL: Serwer i klient"
+apt-get -qq -y --force-yes install mysql-server-5.5 mysql-client-5.5 
+
+echo "MYSQL: PHP5 support"
+apt-get -qq -y --force-yes install php5-mysql
+
+echo "MYSQL: phpmyadmin"
+apt-get -qq -y --force-yes install phpmyadmin

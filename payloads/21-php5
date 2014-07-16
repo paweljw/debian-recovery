@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "# Gole PHP"
+apt-get -qq -y --force-yes install php5 libapache2-mod-php5 
+
+echo "# Typowe moduly wymagane przez ecommerce"
+apt-get -qq -y --force-yes install php5-json php5-imagick php5-gd

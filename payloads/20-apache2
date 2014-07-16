@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "APACHE: Core"
+apt-get -qq -y --force-yes install apache2
