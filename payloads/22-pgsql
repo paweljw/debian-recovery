@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "POSTGRES: Serwer i klient"
+apt-get install -qq -y --force-yes postgresql-9.3 postgresql-client-9.3
+
+echo "POSTGRES: Wsparcie PHP5"
+apt-get install -qq -y --force-yes php5-pgsql
+
+echo "POSTGRES: Lokalizuje pg_hba.conf"
+find /etc -name pg_hba.conf
+
+echo "POSTGRES: Lokalizuje postgresql.conf"
+find /etc -name postgresql.conf

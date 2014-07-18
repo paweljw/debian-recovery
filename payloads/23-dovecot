@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "DOVECOT: serwer"
+apt-get install -qq -y --force-yes dovecot-core dovecot-imapd
+
+echo "DOVECOT: backendy"
+apt-get install -qq -y --force-yes dovecot-mysql dovecot-pgsql

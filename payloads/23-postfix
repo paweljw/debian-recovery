@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "POSTFIX: usuwam sendmail"
+apt-get remove -qq -y --force-yes sendmail
+
+echo "POSTFIX: usuwam exim4"
+apt-get remove -qq -y --force-yes exim4
+
+echo "POSTFIX: serwer"
+apt-get install -qq -y --force-yes postfix
+
+echo "POSTFIX: zatrzymuje serwer w oczekiwaniu na konfiguracje"
+postfix stop
+
+echo "POSTFIX: backendy"
+apt-get install -qq -y --force-yes postfix-mysql postfix-pgsql
+
+# echo "POSTFIX: postfixadmin"
+# apt-get install -qq -y --force-yes postfix-mysql postfixadmin
