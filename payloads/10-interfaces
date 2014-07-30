@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "IFACES: Wymieniam interfaces"
+cd /etc/network
+cp interfaces interfaces.bak
+cp /tmp/debian-recovery/resources/interfaces .
+
+hostname -b moja-poczta.net
+echo "moja-poczta.net" > /etc/hostname
+/etc/init.d/networking restart 

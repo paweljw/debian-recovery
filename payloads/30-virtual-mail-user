@@ -1,0 +1,3 @@
+#!/bin/sh
+
+adduser --system --no-create-home --uid 500 --group --disabled-password --disabled-login --gecos 'dovecot virtual mail user' vmail
