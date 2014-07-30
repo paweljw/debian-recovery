@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp /tmp/debian-recovery/resources/crklient /usr/bin
+chmod +x /usr/bin/crklient
