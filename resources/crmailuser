@@ -1,0 +1,8 @@
+#!/bin/sh 
+
+mkdir /home/$1/mail/$2 
+mkdir /home/$1/mail/$2/Maildir 
+chown vmail:vmail /home/$1/mail/$2/Maildir 
+chown vmail:vmail /home/$1/mail/$2 
+chmod 700 /home/$1/mail/$2/Maildir 
+chmod 700 /home/$1/mail/$2 
