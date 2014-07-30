@@ -1,3 +1,10 @@
 #!/bin/sh
 
-# Dummy script - przeniesione do bootstrapa
+# locale-gen pl_PL
+# locale-gen pl_PL.UTF-8
+# dpkg-reconfigure locales
+# update-locale LANG="pl_PL.UTF-8" LANGUAGE="pl_PL"
+
+# export LANGUAGE=pl_PL.UTF-8
+# export LANG=pl_PL.UTF-8
+# export LC_ALL=pl_PL.UTF-8
