@@ -1,7 +1,8 @@
 #!/bin/sh
 
 mkdir -p /etc/dovecot/private
-openssl req -new -x509 -days 3650 -nodes -out /etc/dovecot/dovecot.pem -keyout /etc/dovecot/private/dovecot.pem 
+ln -s /etc/ssl/certs/moja-poczta.net.pem /etc/dovecot/dovecot.pem
+ln -s /etc/ssl/private/moja-poczta.net.pem /etc/dovecot/private/dovecot.pem
 
 echo "DOVECOT: serwer"
 apt-get install -qq -y --force-yes dovecot-core dovecot-imapd dovecot-lmtpd
