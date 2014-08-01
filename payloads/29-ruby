@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "# RUBY: Konieczne biblioteki"
+apt-get -qq -y --force-yes install ruby ruby-pg

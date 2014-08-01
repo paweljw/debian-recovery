@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+PG_USER = "user"
+PG_PASS = "password"
+PG_DBNM = "database"
+
+require 'pg'
+require 'erb'
+require 'ostruct'
+
+class ErbalT < OpenStruct
+  def self.render_from_hash(t, h)
+    ErbalT.new(h).render(t)
+  end
+
+  def render(template)
+    ERB.new(template).result(binding)
+  end
+end
+  
+# Output a table of current connections to the DB
+conn = PG.connect(  :host => "localhost", :dbname => PG_DBNM, :user => PG_USER, :password => PG_PASS )
+
+conn.exec( "SELECT clients.name, web.domain, web.relative_path FROM public.clients, public.web WHERE web.idk = clients.id;" ) do |result|
+
+  result.each do |row|
+	vars = { 
+		:relative_path  => "/home/"+ row["name"] + "/web/" + row["relative_path"],
+		:server_name =>  row["domain"] }
+	template = File.read('/etc/update-vhosts/client_vhost.conf.erb')
+	File.open("/etc/apache2/sites-available/" + row["domain"] + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(template, vars)) }
+  end
+end

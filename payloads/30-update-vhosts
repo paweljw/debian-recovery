@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cp /tmp/debian-recovery/resources/update-vhosts /usr/bin
+chmod +x /usr/bin/update-vhosts
+
+mkdir -p /etc/update-vhosts
+
+cp /tmp/debian-recovery/resources/client_vhost.conf.erb /etc/update-vhosts
