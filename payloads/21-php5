@@ -5,3 +5,9 @@ apt-get -qq -y --force-yes install php5 libapache2-mod-php5
 
 echo "# PHP: Moduly ecommerce"
 apt-get -qq -y --force-yes install php5-json php5-imagick php5-gd
+
+echo "# PHP: Wymagania roundcube"
+apt-get -qq -y --force-yes install php5-mcrypt php5-intl php-pear
+
+echo "# PHP: Ustawienia strefy czasowej"
+sed -i -e "s/^;date\.timezone =.*$/date\.timezone = 'Europe/Warsaw'/" /etc/php5/apache2/php.ini
