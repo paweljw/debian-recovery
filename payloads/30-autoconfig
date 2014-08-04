@@ -1,0 +1,10 @@
+#!/bin/sh
+
+mkdir -p /var/www/autoconfig
+chmod -R 755 /var/www/autoconfig
+
+cp /tmp/debian-recovery/resources/autoconfig.php /var/www/autoconfig/autoconfig.php
+cp /tmp/debian-recovery/resources/htaccess-autoconfig /var/www/autoconfig/.htaccess
+
+chmod 755 /var/www/autoconfig/*
+

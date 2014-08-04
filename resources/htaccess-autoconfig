@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine On
+
+RewriteRule ^mail/config-v1.xml$ autoconfig.php [L]

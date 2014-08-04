@@ -17,6 +17,9 @@ class ErbalT < OpenStruct
     ERB.new(template).result(binding)
   end
 end
+
+domain_config_template = File.read('/etc/update-vhosts/client_vhost.conf.erb')
+autocn_config_template = File.read('/etc/update-vhosts/client_autoconfig.conf.erb')
   
 # Output a table of current connections to the DB
 conn = PG.connect(  :host => "localhost", :dbname => PG_DBNM, :user => PG_USER, :password => PG_PASS )
@@ -24,10 +27,11 @@ conn = PG.connect(  :host => "localhost", :dbname => PG_DBNM, :user => PG_USER, 
 conn.exec( "SELECT clients.name, web.domain, web.relative_path FROM public.clients, public.web WHERE web.idk = clients.id;" ) do |result|
 
   result.each do |row|
-	vars = { 
-		:relative_path  => "/home/"+ row["name"] + "/web/" + row["relative_path"],
-		:server_name =>  row["domain"] }
-	template = File.read('/etc/update-vhosts/client_vhost.conf.erb')
-	File.open("/etc/apache2/sites-available/" + row["domain"] + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(template, vars)) }
+  	vars = { 
+  		:relative_path  => "/home/"+ row["name"] + "/web/" + row["relative_path"],
+  		:server_name =>  row["domain"] }
+  	
+  	File.open("/etc/apache2/sites-available/" + row["domain"] + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(domain_config_template, vars)) }
+    File.open("/etc/apache2/sites-available/autoconfig." + row["domain"] + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(autocn_config_template, vars)) }
   end
 end
