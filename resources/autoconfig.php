@@ -3,7 +3,7 @@
 <?php $domain = str_replace("autoconfig.", "", $_SERVER['SERVER_NAME']); ?>
 
 <clientConfig version="1.1">
-  <emailProvider id="">
+  <emailProvider id="<?php echo $domain; ?>">
     <domain><?php echo $domain; ?></domain>
     <displayName><?php echo "Poczta $domain" ?></displayName>
     <displayShortName><?php echo $domain; ?></displayShortName>
@@ -16,7 +16,7 @@
     </incomingServer>
     <outgoingServer type="smtp">
       <hostname>moja-poczta.net</hostname>
-      <port>587</port>
+      <port>465</port>
       <socketType>SSL</socketType>
       <authentication>password-cleartext</authentication>
       <username>%EMAILADDRESS%</username>

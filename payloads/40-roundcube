@@ -98,7 +98,7 @@ chmod -R 775 "${roundcuberoot}"/temp
 chmod -R 775 "${roundcuberoot}"/logs
 
 mkdir -p bup/etc/apache2/sites-available
-[ -e /etc/apache2/sites-available/"${roundcubesitename}" ] && cp -a /etc/apache2/sites-available/"${roundcubesitename}" bup/etc/apache2/sites-available/
+[ -e /etc/apache2/sites-available/"${roundcubesitename}.conf" ] && cp -a /etc/apache2/sites-available/"${roundcubesitename}.conf" bup/etc/apache2/sites-available/
 
 sed -e "s/roundcubesitename/${roundcubesitename}/g;s/yourusername/${user}/g;s/yourdomain\.tld/${domain}/g" << 'EOF' > /etc/apache2/sites-available/"${roundcubesitename}"
 <VirtualHost *:80>
@@ -106,7 +106,7 @@ sed -e "s/roundcubesitename/${roundcubesitename}/g;s/yourusername/${user}/g;s/yo
 	ServerName roundcubesitename.yourdomain.tld
 EOF
 
-sed -e "s/\/var\/www\/roundcube/$(echo ${roundcuberoot} | sed -e 's/\//\\\//g')/g" << 'EOF' >> /etc/apache2/sites-available/"${roundcubesitename}"
+sed -e "s/\/var\/www\/roundcube/$(echo ${roundcuberoot} | sed -e 's/\//\\\//g')/g" << 'EOF' >> /etc/apache2/sites-available/"${roundcubesitename}.conf"
 	DocumentRoot /var/www/roundcube
 
 	<Directory /var/www/roundcube>
@@ -201,7 +201,7 @@ sed -e "s/\/var\/www\/roundcube/$(echo ${roundcuberoot} | sed -e 's/\//\\\//g')/
 	
 EOF
 
-sed -e "s/roundcubesitename/${roundcubesitename}/g" << 'EOF' >> /etc/apache2/sites-available/"${roundcubesitename}"
+sed -e "s/roundcubesitename/${roundcubesitename}/g" << 'EOF' >> /etc/apache2/sites-available/"${roundcubesitename}.conf"
 	ErrorLog /var/log/apache2/error_roundcubesitename.log
 
 	# Possible values include: debug, info, notice, warn, error, crit,
