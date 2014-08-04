@@ -100,7 +100,7 @@ chmod -R 775 "${roundcuberoot}"/logs
 mkdir -p bup/etc/apache2/sites-available
 [ -e /etc/apache2/sites-available/"${roundcubesitename}.conf" ] && cp -a /etc/apache2/sites-available/"${roundcubesitename}.conf" bup/etc/apache2/sites-available/
 
-sed -e "s/roundcubesitename/${roundcubesitename}/g;s/yourusername/${user}/g;s/yourdomain\.tld/${domain}/g" << 'EOF' > /etc/apache2/sites-available/"${roundcubesitename}"
+sed -e "s/roundcubesitename/${roundcubesitename}/g;s/yourusername/${user}/g;s/yourdomain\.tld/${domain}/g" << 'EOF' > /etc/apache2/sites-available/"${roundcubesitename}.conf"
 <VirtualHost *:80>
 	ServerAdmin yourusername@yourdomain.tld
 	ServerName roundcubesitename.yourdomain.tld
