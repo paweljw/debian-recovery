@@ -25,37 +25,39 @@ secure_config_template = File.read('/etc/update-vhosts/client_ssl.conf.erb')
 # Output a table of current connections to the DB
 conn = PG.connect(  :host => "localhost", :dbname => PG_DBNM, :user => PG_USER, :password => PG_PASS )
 
-conn.exec( "SELECT clients.name, web.domain, web.relative_path FROM public.clients, public.web WHERE web.idk = clients.id;" ) do |result|
+conn.exec( "SELECT clients.name, web.domain, web.relative_path, web.status, web.ssl FROM public.clients, public.web WHERE web.idk = clients.id;" ) do |result|
 
   result.each do |row|
     user_path = "/home/"+row["name"]
-  	vars = { 
-  		:relative_path  => user_path + "/web/" + row["relative_path"],
+        vars = {
+                :relative_path  => user_path + "/web/" + row["relative_path"],
       :user_path => user_path,
-  		:server_name =>  row["domain"] }
-  	
+                :server_name =>  row["domain"] }
+
     if(row["ssl"] == 1)
       site = "ssl_" + row["domain"]
       File.open("/etc/apache2/sites-available/" + site  + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(secure_config_template, vars)) }
-      if(row["status"] == 1)
-        %x( "a2ensite #{site}" )
+      if(row["status"].to_s == "1")
+        `/usr/sbin/a2ensite #{site}`
+        puts "Site #{site} enabled"
       else
-        %x( "a2dissite #{site}" )
+        `/usr/sbin/a2dissite #{site}`
+        puts "Site #{site} disabled"
       end
-
-      puts "Enable #{site} with SSL"
     else
       site = row["domain"]
       File.open("/etc/apache2/sites-available/" + site  + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(domain_config_template, vars)) }
-      if(row["status"] == 1)
-        %x( "a2ensite #{site}" )
+      if(row["status"].to_s == "1")
+        `/usr/sbin/a2ensite #{site}`
+        puts "Site #{site} enabled"
       else
-        %x( "a2dissite #{site}" )
+        `/usr/sbin/a2dissite #{site}`
+        puts "Site #{site} disabled"
       end
-        
-      puts "Enable #{site}"
     end
 
     File.open("/etc/apache2/sites-available/autoconfig." + row["domain"] + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(autocn_config_template, vars)) }
   end
 end
+
+`service apache2 reload`
