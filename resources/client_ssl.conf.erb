@@ -1,0 +1,17 @@
+<VirtualHost *:443>
+        ServerName <%= server_name %>
+        DocumentRoot <%= relative_path %>
+
+        SSLEngine On
+        SSLCertificateFile <%= user_path %>/<%= server_name %>.crt
+		SSLCertificateKeyFile <%= user_path %>/<%= server_name %>.key
+
+        <Directory <%= relative_path %>>
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

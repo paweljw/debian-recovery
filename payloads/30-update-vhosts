@@ -7,3 +7,7 @@ mkdir -p /etc/update-vhosts
 
 cp /tmp/debian-recovery/resources/client_vhost.conf.erb /etc/update-vhosts
 cp /tmp/debian-recovery/resources/client_autoconfig.conf.erb /etc/update-vhosts
+cp /tmp/debian-recovery/resources/client_ssl.conf.erb /etc/update-vhosts
+
+a2enmod ssl
+service apache2 restart
