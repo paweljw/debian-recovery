@@ -8,3 +8,4 @@ cp /tmp/debian-recovery/resources/htaccess-autoconfig /var/www/autoconfig/.htacc
 
 chmod 755 /var/www/autoconfig/*
 
+a2enmod rewrite
