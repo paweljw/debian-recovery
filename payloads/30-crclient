@@ -1,8 +1,8 @@
 #!/bin/sh
 
-cp /tmp/debian-recovery/resources/crclient /usr/bin
+cp /tmp/debian-recovery/resources/crclient /usr/bin/crclient
 chmod +x /usr/bin/crclient
 
-cp /tmp/debian-recovery/resources/crmailuser /usr/bin
+cp /tmp/debian-recovery/resources/crmailuser /usr/bincrmailuser
 chmod +x /usr/bin/crmailuser
 

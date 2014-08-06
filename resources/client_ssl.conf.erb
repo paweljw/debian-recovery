@@ -3,8 +3,8 @@
         DocumentRoot <%= relative_path %>
 
         SSLEngine On
-        SSLCertificateFile <%= user_path %>/<%= server_name %>.crt
-		SSLCertificateKeyFile <%= user_path %>/<%= server_name %>.key
+        SSLCertificateFile <%= user_path %>/certs/<%= server_name %>.crt
+		SSLCertificateKeyFile <%= user_path %>/certs/<%= server_name %>.key
 
         <Directory <%= relative_path %>>
                 Options Indexes FollowSymLinks

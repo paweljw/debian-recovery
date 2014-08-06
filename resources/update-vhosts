@@ -34,7 +34,7 @@ conn.exec( "SELECT clients.name, web.domain, web.relative_path, web.status, web.
       :user_path => user_path,
                 :server_name =>  row["domain"] }
 
-    if(row["ssl"] == 1)
+    if(row["ssl"].to_s == "1")
       site = "ssl_" + row["domain"]
       File.open("/etc/apache2/sites-available/" + site  + ".conf", 'w') { |f| f.write(ErbalT::render_from_hash(secure_config_template, vars)) }
       if(row["status"].to_s == "1")

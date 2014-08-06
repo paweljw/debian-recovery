@@ -13,3 +13,5 @@ chmod 700 /home/$1/mail/$1
 chmod 700 /home/$1/mail 
 mkdir /home/$1/web
 chmod -R 755 /home/$1/web
+mkdir /home/$1/certs
+chmod -R 755 /home/$1/certs
